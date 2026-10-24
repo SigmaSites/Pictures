@@ -29,12 +29,19 @@
   /* Ordner */
   .back { display: inline-block; margin-bottom: 12px; color: var(--accent); text-decoration: none; font-weight: 600; }
   .back:hover { text-decoration: underline; }
-  .folder { position: relative; padding-top: 10px; }
-  /* kleiner Reiter oben links, damit es wie ein Ordner aussieht */
-  .folder::before { content: ""; position: absolute; top: 0; left: 18px; width: 70px; height: 12px; background: var(--card); border: 1px solid var(--line); border-bottom: none; border-radius: 8px 8px 0 0; }
-  .folder:hover::before { border-color: var(--accent); }
-  .folder .card { border-top-left-radius: 0; }
-  .folder .thumb { height: 140px; }
+  .folder { position: relative; }
+
+  /* Ordner-Vorschau: die ersten 4 Bilder als Raster */
+  .collage { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; height: 190px; background: var(--line); }
+  .collage img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: cover; background: var(--thumb-bg); }
+  .collage.n1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+  .collage.n2 { grid-template-rows: 1fr; }
+  .collage.n3 img:first-child { grid-row: span 2; }
+
+  /* Nichts darf seitlich über den Bildschirm hinausragen */
+  html { overflow-x: hidden; }
+  main, .grid, .card, .folder { min-width: 0; max-width: 100%; box-sizing: border-box; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); }
 </style>
 </head>
 <body>
@@ -65,7 +72,7 @@
   const bilder = [
       /*Kurzgesagt*/
     { ordner: "Kurzgesagt", titel: "Earth with Rings", text: "Image from Kurzgesagt.",
-      vorschau: K1,       url: R1 },
+      vorschau: K1,       url: K1 },
     { ordner: "Kurzgesagt", titel: "Schwarzes Loch", text: "Image from Kurzgesagt.",
       vorschau: K2,       url: K2 },
     { ordner: "Kurzgesagt", titel: "James Webb Space Telescope", text: "Image from Kurzgesagt.",
@@ -80,7 +87,7 @@
       /*Reddit*/
     { ordner: "Reddit", titel: "Durstlöscher Autobahntoilette Minze", text: "Image from Reddit.",
       vorschau: R1,       url: R1 },
-    { ordner: "Reddit", titel: "Durstlöscher Benzin", text: "Image from Reditt.",
+    { ordner: "Reddit", titel: "Durstlöscher Benzin", text: "Image from Reddit.",
       vorschau: R2,       url: R2 },
     { ordner: "Reddit", titel: "Durstlöscher Matheheft", text: "Image from Reddit.",
       vorschau: R3,       url: R3 },
@@ -116,7 +123,8 @@
         return `
         <div class="folder">
           <a class="card" href="#${encodeURIComponent(name)}">
-            <img class="thumb" src="${inhalt[0].vorschau}" alt="" loading="lazy">
+            <div class="collage n${Math.min(inhalt.length, 4)}">` +
+              inhalt.slice(0, 4).map(b => `<img src="${b.vorschau}" alt="">`).join("") + `</div>
             <div class="txt"><h2>${name}</h2><p>${anzahl}</p></div>
           </a>
         </div>`;
