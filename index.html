@@ -25,6 +25,16 @@
   .txt { padding: 16px 18px 20px; }
   .txt h2 { margin: 0 0 4px; font-size: 1.2rem; }
   .txt p { margin: 0; color: var(--muted); }
+
+  /* Ordner */
+  .back { display: inline-block; margin-bottom: 12px; color: var(--accent); text-decoration: none; font-weight: 600; }
+  .back:hover { text-decoration: underline; }
+  .folder { position: relative; padding-top: 10px; }
+  /* kleiner Reiter oben links, damit es wie ein Ordner aussieht */
+  .folder::before { content: ""; position: absolute; top: 0; left: 18px; width: 70px; height: 12px; background: var(--card); border: 1px solid var(--line); border-bottom: none; border-radius: 8px 8px 0 0; }
+  .folder:hover::before { border-color: var(--accent); }
+  .folder .card { border-top-left-radius: 0; }
+  .folder .thumb { height: 140px; }
 </style>
 </head>
 <body>
@@ -39,31 +49,78 @@
   const Ha2       = "https://sigmasites.github.io/Pictures/Ha2.jpg";
   const Ha3       = "https://sigmasites.github.io/Pictures/Ha3.jpg";*/
 
-  // 2) Die Variable steht sowohl bei vorschau als auch bei url
+  // 2) Die Variable steht sowohl bei vorschau als auch bei url.
+  //    Mit "ordner" legst du fest, in welchem Ordner das Bild liegt.
+  //    Einen neuen Ordner gibt es automatisch, sobald du einen neuen Namen verwendest.
   const bilder = [
-    { titel: "Earth with Rings", text: "Image from Kurzgesagt.",
+    { ordner: "Kurzgesagt", titel: "Earth with Rings", text: "Image from Kurzgesagt.",
       vorschau: EwR,       url: EwR },
-    { titel: "Schwarzes Loch", text: "Image from Kurzgesagt.",
+    { ordner: "Kurzgesagt", titel: "Schwarzes Loch", text: "Image from Kurzgesagt.",
       vorschau: Blackhole, url: Blackhole },
-    { titel: "James Webb Space Telescope", text: "Image from Kurzgesagt.",
+    { ordner: "Kurzgesagt", titel: "James Webb Space Telescope", text: "Image from Kurzgesagt.",
       vorschau: JWT,       url: JWT },
-    /*{ titel: "Ha1", text: "S. 3/2",
+    /*{ ordner: "Hausaufgaben", titel: "Ha1", text: "S. 3/2",
       vorschau: Ha1,       url: Ha1 },
-    { titel: "Ha2", text: "S. 6/7",
-      vorschau: Ha2, url: Ha2 },
-    { titel: "Ha3", text: "S. 7/1",
+    { ordner: "Hausaufgaben", titel: "Ha2", text: "S. 6/7",
+      vorschau: Ha2,       url: Ha2 },
+    { ordner: "Hausaufgaben", titel: "Ha3", text: "S. 7/1",
       vorschau: Ha3,       url: Ha3 }*/
   ];
 
-  document.getElementById("app").innerHTML = `
-    <h1>Bilder</h1>
-    <p>Klick auf eine Vorschau, um ans Bild zu kommen.</p>
-    <div class="grid">` +
-    bilder.map(b => `
-      <a class="card" href="${b.url}" target="_blank" rel="noopener">
-        <img class="thumb" src="${b.vorschau}" alt="${b.titel}" loading="lazy">
-        <div class="txt"><h2>${b.titel}</h2><p>${b.text}</p></div>
-      </a>`).join("") + `</div>`;
+  // 3) Bilder nach Ordnern gruppieren (Reihenfolge wie im Code)
+  const ordner = {};
+  bilder.forEach(b => {
+    const name = b.ordner || "Ohne Ordner";
+    (ordner[name] = ordner[name] || []).push(b);
+  });
+
+  const app = document.getElementById("app");
+
+  // Startseite: alle Ordner
+  function zeigeOrdner() {
+    document.title = "Bilder";
+    app.innerHTML = `
+      <h1>Bilder</h1>
+      <p>Klick auf einen Ordner, um die Bilder darin zu sehen.</p>
+      <div class="grid">` +
+      Object.keys(ordner).map(name => {
+        const inhalt = ordner[name];
+        const anzahl = inhalt.length === 1 ? "1 Bild" : inhalt.length + " Bilder";
+        return `
+        <div class="folder">
+          <a class="card" href="#${encodeURIComponent(name)}">
+            <img class="thumb" src="${inhalt[0].vorschau}" alt="" loading="lazy">
+            <div class="txt"><h2>${name}</h2><p>${anzahl}</p></div>
+          </a>
+        </div>`;
+      }).join("") + `</div>`;
+  }
+
+  // Ordneransicht: Bilder eines Ordners
+  function zeigeInhalt(name) {
+    document.title = name + " – Bilder";
+    app.innerHTML = `
+      <a class="back" href="#">‹ Alle Ordner</a>
+      <h1>${name}</h1>
+      <p>Klick auf eine Vorschau, um ans Bild zu kommen.</p>
+      <div class="grid">` +
+      ordner[name].map(b => `
+        <a class="card" href="${b.url}" target="_blank" rel="noopener">
+          <img class="thumb" src="${b.vorschau}" alt="${b.titel}" loading="lazy">
+          <div class="txt"><h2>${b.titel}</h2><p>${b.text}</p></div>
+        </a>`).join("") + `</div>`;
+  }
+
+  // Der Hash in der Adresse (#Kurzgesagt) bestimmt, welcher Ordner offen ist
+  function route() {
+    const name = decodeURIComponent(location.hash.slice(1));
+    if (name && ordner[name]) zeigeInhalt(name);
+    else zeigeOrdner();
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener("hashchange", route);
+  route();
 </script>
 </body>
 </html>
