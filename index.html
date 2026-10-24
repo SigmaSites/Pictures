@@ -42,29 +42,56 @@
 
 <script>
   // 1) Vorschau-URLs als Variablen (hier änderst du die Adressen)
-  const EwR       = "https://sigmasites.github.io/Pictures/Images/EwR.png";
-  const Blackhole = "https://sigmasites.github.io/Pictures/Images/Blackhole.png";
-  const JWT       = "https://sigmasites.github.io/Pictures/Images/JWT.png";
+    //Kurzgesagt
+  const K1  = "https://sigmasites.github.io/Pictures/Images/EwR.png";
+  const K2  = "https://sigmasites.github.io/Pictures/Images/Blackhole.png";
+  const K3  = "https://sigmasites.github.io/Pictures/Images/JWT.png";
+    //Hausaufgaben
   /*const Ha1       = "https://sigmasites.github.io/Pictures/Ha1.jpg";
   const Ha2       = "https://sigmasites.github.io/Pictures/Ha2.jpg";
   const Ha3       = "https://sigmasites.github.io/Pictures/Ha3.jpg";*/
+    //Reddit
+  const R1    = "https://sigmasites.github.io/Pictures/Images/DL-Autobahn.png";
+  const R2    = "https://sigmasites.github.io/Pictures/Images/DL-Benzin.png";
+  const R3    = "https://sigmasites.github.io/Pictures/Images/DL-Matheheft.png";
+  const R4    = "https://sigmasites.github.io/Pictures/Images/RS-Hundekot.png";
+  const R5    = "https://sigmasites.github.io/Pictures/Images/RS-RS.png";
+  const R6    = "https://sigmasites.github.io/Pictures/Images/RS-Volidioten.png";
+  const R7    = "https://sigmasites.github.io/Pictures/Images/Saufland.png";
 
   // 2) Die Variable steht sowohl bei vorschau als auch bei url.
   //    Mit "ordner" legst du fest, in welchem Ordner das Bild liegt.
   //    Einen neuen Ordner gibt es automatisch, sobald du einen neuen Namen verwendest.
   const bilder = [
+      /*Kurzgesagt*/
     { ordner: "Kurzgesagt", titel: "Earth with Rings", text: "Image from Kurzgesagt.",
       vorschau: EwR,       url: EwR },
     { ordner: "Kurzgesagt", titel: "Schwarzes Loch", text: "Image from Kurzgesagt.",
       vorschau: Blackhole, url: Blackhole },
     { ordner: "Kurzgesagt", titel: "James Webb Space Telescope", text: "Image from Kurzgesagt.",
       vorschau: JWT,       url: JWT },
+      /*Hausaufgaben*/
     /*{ ordner: "Hausaufgaben", titel: "Ha1", text: "S. 3/2",
       vorschau: Ha1,       url: Ha1 },
     { ordner: "Hausaufgaben", titel: "Ha2", text: "S. 6/7",
       vorschau: Ha2,       url: Ha2 },
     { ordner: "Hausaufgaben", titel: "Ha3", text: "S. 7/1",
       vorschau: Ha3,       url: Ha3 }*/
+      /*Reddit*/
+    { ordner: "Reddit", titel: "Earth with Rings", text: "Image from Reddit.",
+      vorschau: R1,       url: R1 },
+    { ordner: "Reddit", titel: "Earth with Rings", text: "Image from Reditt.",
+      vorschau: R2,       url: R2 },
+    { ordner: "Reddit", titel: "Earth with Rings", text: "Image from Reddit.",
+      vorschau: R3,       url: R3 },
+    { ordner: "Redditt", titel: "Earth with Rings", text: "Image from Reddit.",
+      vorschau: R4,       url: R4 },
+    { ordner: "Reddit", titel: "Earth with Rings", text: "Image from Reddit.",
+      vorschau: R5,       url: R5 },
+    { ordner: "Reddit", titel: "Earth with Rings", text: "Image from Reddit.",
+      vorschau: R6,       url: R6 },
+    { ordner: "Reddit", titel: "Earth with Rings", text: "Image from Reddit.",
+      vorschau: R7,       url: R7 },
   ];
 
   // 3) Bilder nach Ordnern gruppieren (Reihenfolge wie im Code)
