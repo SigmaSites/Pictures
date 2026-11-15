@@ -50,31 +50,34 @@
 <script>
   // 1) Vorschau-URLs als Variablen (hier änderst du die Adressen)
     //Kurzgesagt
-  const K1  = "https://sigmasites.github.io/Pictures/Images/Kurzgesagt/EwR.png";
-  const K2  = "https://sigmasites.github.io/Pictures/Images/Kurzgesagt/Blackhole.png";
-  const K3  = "https://sigmasites.github.io/Pictures/Images/Kurzgesagt/JWT.png";
+  const K1   = "https://sigmasites.github.io/Pictures/Images/Kurzgesagt/EwR.png";
+  const K2   = "https://sigmasites.github.io/Pictures/Images/Kurzgesagt/Blackhole.png";
+  const K3   = "https://sigmasites.github.io/Pictures/Images/Kurzgesagt/JWT.png";
     //Hausaufgaben
-  const Ha1 = "https://sigmasites.github.io/Pictures/Hausaufgaben/Ha1.jpg";
-  const Ha2 = "https://sigmasites.github.io/Pictures/Hausaufgaben/Ha2.jpg";
-  const Ha3 = "https://sigmasites.github.io/Pictures/Hausaufgaben/Ha3.jpg";
+  const Ha1  = "https://sigmasites.github.io/Pictures/Hausaufgaben/Ha1.jpg";
+  const Ha2  = "https://sigmasites.github.io/Pictures/Hausaufgaben/Ha2.jpg";
+  const Ha3  = "https://sigmasites.github.io/Pictures/Hausaufgaben/Ha3.jpg";
     //Reddit
-  const R1  = "https://sigmasites.github.io/Pictures/Images/Reddit/DL-Autobahn.png";
-  const R2  = "https://sigmasites.github.io/Pictures/Images/Reddit/DL-Benzin.png";
-  const R3  = "https://sigmasites.github.io/Pictures/Images/Reddit/DL-Matheheft.png";
-  const R4  = "https://sigmasites.github.io/Pictures/Images/Reddit/RS-Hundekot.png";
-  const R5  = "https://sigmasites.github.io/Pictures/Images/Reddit/RS-RS.png";
-  const R6  = "https://sigmasites.github.io/Pictures/Images/Reddit/RS-Vollidioten.png";
-  const R7  = "https://sigmasites.github.io/Pictures/Images/Reddit/Saufland.png";
+  const R1   = "https://sigmasites.github.io/Pictures/Images/Reddit/DL-Autobahn.png";
+  const R2   = "https://sigmasites.github.io/Pictures/Images/Reddit/DL-Benzin.png";
+  const R3   = "https://sigmasites.github.io/Pictures/Images/Reddit/DL-Matheheft.png";
+  const R4   = "https://sigmasites.github.io/Pictures/Images/Reddit/RS-Hundekot.png";
+  const R5   = "https://sigmasites.github.io/Pictures/Images/Reddit/RS-RS.png";
+  const R6   = "https://sigmasites.github.io/Pictures/Images/Reddit/RS-Vollidioten.png";
+  const R7   = "https://sigmasites.github.io/Pictures/Images/Reddit/Saufland.png";
     //NealFun
-  const N1  = "https://sigmasites.github.io/Pictures/Images/NealFun/Planeman.png";
-  const N2  = "https://sigmasites.github.io/Pictures/Images/NealFun/Multiroundabout.png";
-  const N3  = "https://sigmasites.github.io/Pictures/Images/NealFun/Chickenchurch.png";
-  const N4  = "https://sigmasites.github.io/Pictures/Images/NealFun/Traffic Light Tree.png";
-  const N5  = "https://sigmasites.github.io/Pictures/Images/NealFun/Sinking Statues.png";
-  const N6  = "https://sigmasites.github.io/Pictures/Images/NealFun/Carwash.png";
-  const N7  = "https://sigmasites.github.io/Pictures/Images/NealFun/Floating Faucet.png";
-  const N8  = "https://sigmasites.github.io/Pictures/Images/NealFun/Suspended Stairs.png";
-  const N9  = "https://sigmasites.github.io/Pictures/Images/NealFun/Gigant Head.png";
+  const N1   = "https://sigmasites.github.io/Pictures/Images/NealFun/Planeman.png";
+  const N2   = "https://sigmasites.github.io/Pictures/Images/NealFun/Multiroundabout.png";
+  const N3   = "https://sigmasites.github.io/Pictures/Images/NealFun/Chickenchurch.png";
+  const N4   = "https://sigmasites.github.io/Pictures/Images/NealFun/Traffic Light Tree.png";
+  const N5   = "https://sigmasites.github.io/Pictures/Images/NealFun/Sinking Statues.png";
+  const N6   = "https://sigmasites.github.io/Pictures/Images/NealFun/Carwash.png";
+  const N7   = "https://sigmasites.github.io/Pictures/Images/NealFun/Floating Faucet.png";
+  const N8   = "https://sigmasites.github.io/Pictures/Images/NealFun/Suspended Stairs.png";
+  const N9   = "https://sigmasites.github.io/Pictures/Images/NealFun/Gigant Head.png";
+  const N10  = "https://sigmasites.github.io/Pictures/Images/NealFun/Church on Road.png";
+  const N11  = "https://sigmasites.github.io/Pictures/Images/NealFun/Dinosaur Walker.png";
+  const N12  = "https://sigmasites.github.io/Pictures/Images/NealFun/Head in Wall.png";
 
   // 2) Die Variable steht sowohl bei vorschau als auch bei url.
   //    Mit "ordner" legst du fest, in welchem Ordner das Bild liegt.
@@ -128,6 +131,12 @@
       vorschau: N8,       url: N8 },
     { ordner: "NealFun", titel: "Gigant Head", text: "Crazy Street View Photos found with NealFun.",
       vorschau: N9,       url: N9 },
+    { ordner: "NealFun", titel: "Church on Road", text: "Crazy Street View Photos found with NealFun.",
+      vorschau: N10,       url: N10 },
+    { ordner: "NealFun", titel: "Dinosaur Walker", text: "Crazy Street View Photos found with NealFun.",
+      vorschau: N11,       url: N11 },
+    { ordner: "NealFun", titel: "Head in Wall", text: "Crazy Street View Photos found with NealFun.",
+      vorschau: N12,       url: N12 },
   ];
 
   // 3) Bilder nach Ordnern gruppieren (Reihenfolge wie im Code)
